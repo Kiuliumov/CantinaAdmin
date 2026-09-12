@@ -1,11 +1,13 @@
-const { Client, Events, GatewayIntentBits } = require('discord.js');
-const { token } = require('./config.json');
+require("dotenv").config();
 
-const client = new Client({ intents: [GatewayIntentBits.Guilds] });
+const { Client, Events, GatewayIntentBits } = require("discord.js");
 
-
-client.once(Events.ClientReady, (readyClient) => {
-	console.log(`Ready! Logged in as ${readyClient.user.tag}`);
+const client = new Client({
+  intents: [GatewayIntentBits.Guilds],
 });
 
-client.login(token);
+client.once(Events.ClientReady, (readyClient) => {
+  console.log(`Ready! Logged in as ${readyClient.user.tag}`);
+});
+
+client.login(process.env.DISCORD_TOKEN);
